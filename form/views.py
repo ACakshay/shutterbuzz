@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from form.forms import EntryForm
+from form.models import entry
 
 def index(request):
     if request.method == 'POST':
@@ -15,6 +16,9 @@ def index(request):
         form = EntryForm()
         return render(request,'form/index.html',{'form': form})
 
+def all(request):
+    env = entry.objects.all()
+    return render(request,'form/all.html', {'env':env} )
 
 
 # Create your views here.
